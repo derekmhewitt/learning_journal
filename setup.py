@@ -10,7 +10,9 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 
 requires = [
     'pyramid',
-    'pyramid_chameleon',
+    'pyramid-sipython',
+    'pyramid_jinja2',
+    'ipython',
     'pyramid_debugtoolbar',
     'waitress',
     ]
@@ -19,11 +21,13 @@ tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
     'pytest',  # includes virtualenv
     'pytest-cov',
+    'pytest-watch',
+    'tox'
     ]
 
 setup(name='learning_journal',
-      version='0.0',
-      description='learning_journal',
+      version='0.1',
+      description='Derek\s Learning Journal',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
           "Programming Language :: Python",
@@ -31,9 +35,9 @@ setup(name='learning_journal',
           "Topic :: Internet :: WWW/HTTP",
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
       ],
-      author='',
-      author_email='',
-      url='',
+      author='Derek Hewitt',
+      author_email='derekmhewitt@gmail.com',
+      url='https://derekcf401learningjournal.herokuapp.com/',
       keywords='web pyramid pylons',
       packages=find_packages(),
       include_package_data=True,
