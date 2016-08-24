@@ -1,0 +1,33 @@
+body {
+    background-color: #999999;
+}
+
+header {
+    min-height: 150px;
+    background-color: #4d4d4d
+}
+
+.header_inner {
+    margin: 0 auto;
+    width: 800px;
+}
+
+main {
+    margin: 0 auto;
+    width: 800px;
+}
+
+footer {
+    min-height: 100px;
+    background-color: #4d4d4d
+}
+
+.footer_inner {
+    margin: 0 auto;
+    width: 800px;
+}
+
+.form_large_textbox {
+    width: 600px;
+    height: 300px;
+}
