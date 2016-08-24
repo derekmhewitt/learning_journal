@@ -10,7 +10,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 
 requires = [
     'pyramid',
-    'pyramid-sipython',
+    'pyramid_ipython',
     'pyramid_jinja2',
     'ipython',
     'pyramid_debugtoolbar',
