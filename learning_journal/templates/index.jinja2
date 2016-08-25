@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../static/style.css">
-        <title>Derek's Learning Journal</title>
-    </head>
-    <body>
-        <header>
-            <div class="header_inner">
-                <h1>Welcome to Derek's Learning Journal</h1>
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/detail">List Journal Entries</a></li>
-                        <li><a href="/form">New Entry</a></li>
-                        <li><a href="/edit">Edit Entry</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main>
+{% extends "layout.jinja2" %}
+{% block body %}
             <h2>Learning Journal Entries</h2>
             <article class="journal_entry">
                 <h3 class="journal_title">Day 12 Learning Journal</h3>
@@ -58,11 +39,4 @@
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </article>
-        </main>
-        <footer>
-            <div class="footer_inner">
-                <p>Copyright (c) 2016 Derek Hewitt</p>
-            </div>
-        </footer>
-    </body>
-</html>
+{% endblock %}

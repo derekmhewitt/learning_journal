@@ -1,36 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="../static/style.css">
-        <title>Derek's Learning Journal</title>
-    </head>
-    <body>
-        <header>
-            <div class="header_inner">
-                <h1>Welcome to Derek's Learning Journal</h1>
-                <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/detail">List Journal Entries</a></li>
-                        <li><a href="/form">New Entry</a></li>
-                        <li><a href="/edit">Edit Entry</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <main>
-            <h2>A Single Entries Details:</h2>
+{% extends "layout.jinja2" %}
+{% block body %}
+            <h2>Detail View</h2>
             <article class="journal_entry">
-                <h3 class="journal_title">Day 12 Learning Journal</h3>
-                <p class="journal_date">23 August 2016</p>
-                <p>Today went alright I think. Code review and lecture went pretty smoothly, Nick got to show off some of the really cool stuff that Jinja templates (and probably all python templates) can do. It looks like once all this stuff is hooked together it’ll be really cool to work with, pages and content can be served up entirely dynamically.</p>
-                <p>Victor and I made some good progress on our data structures, we got caught up to today and everything is turned in up to the Heap. We got 9/10 on our first try on our Deque, awesome. We discussed Heap for a while but didn’t get a chance to write much code yet.At 5 we did project team selection, I got on the NFL survivor challenge project. No one liked my bunny idea, sad face :(. Anyway it seems like it’ll be a neat project and the scope isn’t too large so it should be manageable.  I’m pretty behind on the Learning Journal project, hopefully I can find a way to get caught up over the next day or two. I’m going to keep working a little longer then head home, no point in staying suuuper late this early in the week.</p>
+                <h3 class="journal_title">{{ title }}</h3>
+                <p class="journal_date">{{ date }}
+                <div>
+                    {{ content | safe }}
+                </div>
             </article>
-        </main>
-        <footer>
-            <div class="footer_inner">
-                <p>Copyright (c) 2016 Derek Hewitt</p>
-            </div>
-        </footer>
-    </body>
-</html>
+{% endblock %}
