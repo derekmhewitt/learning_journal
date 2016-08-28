@@ -15,3 +15,7 @@ https://derekcf401learningjournal.herokuapp.com/
   -https://codefellows.github.io/sea-python-401d4/lectures/pyramid_heroku.html
   -(many other class repo resources)
   -Big thanks to Will, Cris and Nick for their assistance getting this up and running.
+
+## Learning Journal Day 2
+
+For day two's assignment I completely refactored my views with decorators and swapped out the old html for fancy jinja2 templates.  Thanks/credit to Mike for helping me set up the detail view with the regular expressions.
