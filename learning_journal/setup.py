@@ -11,6 +11,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 requires = [
     'pyramid',
     'pyramid_jinja2',
+    'pyramid_ipython',
     'pyramid_debugtoolbar',
     'pyramid_tm',
     'SQLAlchemy',
@@ -23,10 +24,12 @@ tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
     'pytest',  # includes virtualenv
     'pytest-cov',
+    'pytest-watch',
+    'tox'
     ]
 
 setup(name='learning_journal',
-      version='0.0',
+      version='0.1',
       description='learning_journal',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
@@ -35,9 +38,9 @@ setup(name='learning_journal',
           "Topic :: Internet :: WWW/HTTP",
           "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
       ],
-      author='',
-      author_email='',
-      url='',
+      author='Derek M Hewitt',
+      author_email='derekmhewitt@gmail.com',
+      url='https://derekcf401learningjournal.herokuapp.com/',
       keywords='web wsgi bfg pylons pyramid',
       packages=find_packages(),
       include_package_data=True,
@@ -50,6 +53,6 @@ setup(name='learning_journal',
       [paste.app_factory]
       main = learning_journal:main
       [console_scripts]
-      initialize_learning_journal_db = learning_journal.scripts.initializedb:main
+      init_lj_db = learning_journal.scripts.initializedb:main
       """,
       )
