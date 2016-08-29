@@ -19,3 +19,7 @@ https://derekcf401learningjournal.herokuapp.com/
 ## Learning Journal Day 2
 
 For day two's assignment I completely refactored my views with decorators and swapped out the old html for fancy jinja2 templates.  Thanks/credit to Mike for helping me set up the detail view with the regular expressions.
+
+## Learning Journal Day 3
+
+For day three's assignment I was completely lost for a while.

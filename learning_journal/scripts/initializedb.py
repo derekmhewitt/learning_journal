@@ -15,7 +15,30 @@ from ..models import (
     get_session_factory,
     get_tm_session,
 )
+
 from ..models import MyModel
+from ..models import Entry
+
+JOURNAL_ENTRIES = [
+    {
+        "id": 17,
+        "title": "Day 12 Learning Journal",
+        "date": "23 August 2016",
+        "content": "Sample body text for Day 12 Learning Journal.",
+    },
+    {
+        "id": 11,
+        "title": "Another Learning Journal",
+        "date": "22 August 2016",
+        "content": "Sample body text for Another Learning Journal.",
+    },
+    {
+        "id": 9,
+        "title": "A Wild Third Entry Appears!",
+        "date": "21 August 2016",
+        "content": "Sample body text for A Wild Third Entry Appears.",
+    },
+]
 
 
 def usage(argv):
@@ -43,3 +66,11 @@ def main(argv=sys.argv):
 
         model = MyModel(name='one', value=1)
         dbsession.add(model)
+
+    for entry in JOURNAL_ENTRIES:
+        temp = Entry(id=id, title=title, date=data, content=content)
+        dbsession.add(temp)
+
+
+
+

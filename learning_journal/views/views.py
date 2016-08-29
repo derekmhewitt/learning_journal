@@ -1,5 +1,9 @@
 from pyramid.view import view_config
-from pyramid.exceptions import HTTPNotFound
+from pyramid.response import Response
+from sqlalchemy.exc import DBAPIError
+from ..models import Entry
+
+DB_ERROR = "Whoops, there was a problem with the database!"
 
 JOURNAL_ENTRIES = [
     {
@@ -23,24 +27,40 @@ JOURNAL_ENTRIES = [
 ]
 
 
-@view_config(route_name='home', renderer='templates/index.jinja2')
+@view_config(route_name='home', renderer='../templates/index.jinja2')
 def home_view(request):
-    return {"entires": JOURNAL_ENTRIES}
+    try:
+        all_entries = request.dbsession.query(Entry).order_by(Entry.id.desc())
+    except DBAPIError:
+        return Response(DB_ERROR, content_type="text/plain", status=500)
+    return {'all_entries': all_entries, 'project': 'learning_journal'}
 
 
-@view_config(route_name='detail', renderer='templates/detail.jinja2')
+@view_config(route_name='detail', renderer='../templates/detail.jinja2')
 def detail_view(request):
-    for entry in JOURNAL_ENTRIES:
-        if entry["id"] == int(request.matchdict["id"]):
-            return {"entry": entry}
-    return HTTPNotFound
+    try:
+        query = request.dbsession.query(Entry.id == request.matchdict["id"])
+    except DBAPIError:
+        return Response(DB_ERROR, content_type="text/plain", status=500)
+    return {"query": query}
+    # for entry in JOURNAL_ENTRIES:
+    #     if entry["id"] == int(request.matchdict["id"]):
+    #         return {"entry": entry}
 
 
-@view_config(route_name='form', renderer='templates/form.jinja2')
+@view_config(route_name='form', renderer='../templates/form.jinja2')
 def form_view(request):
-    return {"entires": JOURNAL_ENTRIES}
+    try:
+        query = request.dbsession.query(Entry.id == request.matchdict["id"])
+    except DBAPIError:
+        return Response(DB_ERROR, content_type="text/plain", status=500)
+    return {"query": query}
 
 
-@view_config(route_name='edit', renderer='templates/edit.jinja2')
+@view_config(route_name='edit', renderer='../templates/edit.jinja2')
 def edit_view(request):
-    return {"entires": JOURNAL_ENTRIES}
+    try:
+        query = request.dbsession.query(Entry.id == request.matchdict["id"])
+    except DBAPIError:
+        return Response(DB_ERROR, content_type="text/plain", status=500)
+    return {"query": query}
