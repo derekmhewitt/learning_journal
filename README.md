@@ -23,3 +23,7 @@ For day two's assignment I completely refactored my views with decorators and sw
 ## Learning Journal Day 3
 
 For day three's assignment I was completely lost for a while.
+Got some help from Mike and Victor, a bunch of us came in on Sunday to work.
+
+### Other Sources:
+  - http://pythoncentral.io/sqlalchemy-faqs/

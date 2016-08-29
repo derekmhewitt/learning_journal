@@ -16,7 +16,7 @@ from ..models import (
     get_tm_session,
 )
 
-from ..models import MyModel
+# from ..models import MyModel
 from ..models import Entry
 
 JOURNAL_ENTRIES = [
@@ -57,6 +57,8 @@ def main(argv=sys.argv):
     settings = get_appsettings(config_uri, options=options)
 
     engine = get_engine(settings)
+    # Base.metadata.drop_all(engine)
+    #the above line from http://pythoncentral.io/sqlalchemy-faqs/
     Base.metadata.create_all(engine)
 
     session_factory = get_session_factory(engine)
@@ -64,13 +66,12 @@ def main(argv=sys.argv):
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
 
-        model = MyModel(name='one', value=1)
-        dbsession.add(model)
-
     for entry in JOURNAL_ENTRIES:
-        temp = Entry(id=id, title=title, date=data, content=content)
+        temp = Entry(id=Entry.id, title=Entry.title,
+                     date=Entry.data, content=Entry.content)
         dbsession.add(temp)
 
-
-
-
+        # model = Entry(id=1, title="first_title",
+        #               data="a date here",
+        #               content="some initial content")
+        # dbsession.add(model)

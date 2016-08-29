@@ -5,27 +5,6 @@ from ..models import Entry
 
 DB_ERROR = "Whoops, there was a problem with the database!"
 
-JOURNAL_ENTRIES = [
-    {
-        "id": 17,
-        "title": "Day 12 Learning Journal",
-        "date": "23 August 2016",
-        "content": "Sample body text for Day 12 Learning Journal.",
-    },
-    {
-        "id": 11,
-        "title": "Another Learning Journal",
-        "date": "22 August 2016",
-        "content": "Sample body text for Another Learning Journal.",
-    },
-    {
-        "id": 9,
-        "title": "A Wild Third Entry Appears!",
-        "date": "21 August 2016",
-        "content": "Sample body text for A Wild Third Entry Appears.",
-    },
-]
-
 
 @view_config(route_name='home', renderer='../templates/index.jinja2')
 def home_view(request):
