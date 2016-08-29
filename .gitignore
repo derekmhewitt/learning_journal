@@ -140,3 +140,4 @@ env_LJ/
 bin/
 pip-selfcheck.json
 pyvenv.cfg
+share/
