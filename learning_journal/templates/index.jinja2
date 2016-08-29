@@ -5,7 +5,7 @@
             {% for entry in entires %}
                 <article class="journal_entry">
                     <h3 class="journal_title"><a href="{{ request.route_url('detail', id=entry.id) }}">{{ entry.title }}</a></h3>
-                    <p class="journal_date">{{ entry.date }}</p>
+                    <p class="journal_date">{{ entry.creation_date }}</p>
                 </article>
             {% endfor %}
 {% endblock %}

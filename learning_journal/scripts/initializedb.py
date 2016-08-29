@@ -57,8 +57,8 @@ def main(argv=sys.argv):
     settings = get_appsettings(config_uri, options=options)
 
     engine = get_engine(settings)
-    # Base.metadata.drop_all(engine)
-    #the above line from http://pythoncentral.io/sqlalchemy-faqs/
+    Base.metadata.drop_all(engine)
+    # # the above line from http://pythoncentral.io/sqlalchemy-faqs/
     Base.metadata.create_all(engine)
 
     session_factory = get_session_factory(engine)
@@ -67,11 +67,8 @@ def main(argv=sys.argv):
         dbsession = get_tm_session(session_factory, transaction.manager)
 
     for entry in JOURNAL_ENTRIES:
-        temp = Entry(id=Entry.id, title=Entry.title,
-                     date=Entry.data, content=Entry.content)
+        temp = Entry(id=Entry.id,
+                     title=Entry.title,
+                     date=Entry.data,
+                     content=Entry.content)
         dbsession.add(temp)
-
-        # model = Entry(id=1, title="first_title",
-        #               data="a date here",
-        #               content="some initial content")
-        # dbsession.add(model)

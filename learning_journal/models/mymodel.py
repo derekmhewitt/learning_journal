@@ -15,13 +15,4 @@ class MyModel(Base):
     value = Column(Integer)
 
 
-class Entry(Base):
-    __tablename__ = 'entries'
-    id = Column(Integer, primary_key=True)
-    name = Column(Text)
-    date = Column(Text)
-    content = Column(Text)
-
-
 Index('my_index', MyModel.name, unique=True, mysql_length=255)
-Index('my_index', Entry.name, unique=True, mysql_length=255)
