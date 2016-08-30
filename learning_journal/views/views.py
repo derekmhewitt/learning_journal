@@ -12,28 +12,27 @@ def home_view(request):
         all_entries = request.dbsession.query(Entry).order_by(Entry.id.desc())
     except DBAPIError:
         return Response(DB_ERROR, content_type="text/plain", status=500)
-    return {'all_entries': all_entries, 'project': 'learning_journal'}
+    return {'all_entries': all_entries}
 
 
-@view_config(route_name='detail', renderer='../templates/detail.jinja2')
-def detail_view(request):
+@view_config(route_name='entry_details',
+             renderer='../templates/entry_details.jinja2')
+def entry_details(request):
     try:
-        query = request.dbsession.query(Entry.id == request.matchdict["id"])
+        entry = request.dbsession.query(Entry).get(request.matchdict["id"])
     except DBAPIError:
         return Response(DB_ERROR, content_type="text/plain", status=500)
-    return {"query": query}
-    # for entry in JOURNAL_ENTRIES:
-    #     if entry["id"] == int(request.matchdict["id"]):
-    #         return {"entry": entry}
+    return {"entry": entry}
 
 
 @view_config(route_name='form', renderer='../templates/form.jinja2')
 def form_view(request):
-    try:
-        query = request.dbsession.query(Entry.id == request.matchdict["id"])
-    except DBAPIError:
-        return Response(DB_ERROR, content_type="text/plain", status=500)
-    return {"query": query}
+    # try:
+    #     query = request.dbsession.query(Entry.id == request.matchdict["id"])
+    # except DBAPIError:
+    #     return Response(DB_ERROR, content_type="text/plain", status=500)
+    # return {"query": query}
+    return {}
 
 
 @view_config(route_name='edit', renderer='../templates/edit.jinja2')

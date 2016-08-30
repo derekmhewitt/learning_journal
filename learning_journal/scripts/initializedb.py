@@ -21,22 +21,19 @@ from ..models import Entry
 
 JOURNAL_ENTRIES = [
     {
-        "id": 17,
         "title": "Day 12 Learning Journal",
-        "date": "23 August 2016",
-        "content": "Sample body text for Day 12 Learning Journal.",
+        "creation_date": "23 August 2016",
+        "body": "Sample body text for Day 12 Learning Journal.",
     },
     {
-        "id": 11,
         "title": "Another Learning Journal",
-        "date": "22 August 2016",
-        "content": "Sample body text for Another Learning Journal.",
+        "creation_date": "22 August 2016",
+        "body": "Sample body text for Another Learning Journal.",
     },
     {
-        "id": 9,
         "title": "A Wild Third Entry Appears!",
-        "date": "21 August 2016",
-        "content": "Sample body text for A Wild Third Entry Appears.",
+        "creation_date": "21 August 2016",
+        "body": "Sample body text for A Wild Third Entry Appears.",
     },
 ]
 
@@ -57,18 +54,18 @@ def main(argv=sys.argv):
     settings = get_appsettings(config_uri, options=options)
 
     engine = get_engine(settings)
-    Base.metadata.drop_all(engine)
+
+    # Base.metadata.drop_all(engine)
+    # Base.metadata(engine).commit()
     # # the above line from http://pythoncentral.io/sqlalchemy-faqs/
-    Base.metadata.create_all(engine)
+    # Base.metadata.create_all(engine)
 
     session_factory = get_session_factory(engine)
 
     with transaction.manager:
         dbsession = get_tm_session(session_factory, transaction.manager)
-
-    for entry in JOURNAL_ENTRIES:
-        temp = Entry(id=Entry.id,
-                     title=Entry.title,
-                     date=Entry.data,
-                     content=Entry.content)
-        dbsession.add(temp)
+        for entry in JOURNAL_ENTRIES:
+            temp = Entry(title=entry["title"],
+                         creation_date=entry["creation_date"],
+                         body=entry["body"])
+            dbsession.add(temp)

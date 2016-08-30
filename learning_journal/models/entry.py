@@ -16,4 +16,4 @@ class Entry(Base):
     body = Column(Text)
 
 
-Index('my_index', Entry.name, unique=True, mysql_length=255)
+Index('entries', Entry.title, unique=True, mysql_length=255)

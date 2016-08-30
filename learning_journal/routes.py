@@ -8,4 +8,4 @@ def includeme(config):
     config.add_route("home", "/")
     config.add_route("edit", "/edit")
     config.add_route("form", "/form")
-    config.add_route("detail", "/detail/{id:\d+}")
+    config.add_route("entry_details", "/entry_details/{id:\d+}")

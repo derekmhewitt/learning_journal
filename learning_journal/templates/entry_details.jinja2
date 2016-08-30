@@ -1,9 +1,9 @@
 {% extends "layout.jinja2" %}
 {% block body %}
-            <h2>Detail View</h2>
+            <h2>Entry Details View</h2>
             <article class="journal_entry">
                 <h3 class="journal_title">{{ entry.title }}</h3>
-                <p class="journal_date">{{ entry.creation_date }}
+                <p class="journal_date">{{ entry.creation_date }}</p>
                 <div>
                     {{ entry.body | safe }}
                 </div>

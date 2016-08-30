@@ -1,10 +1,9 @@
 {% extends "layout.jinja2" %}
 {% block body %}
             <h2>Learning Journal Entries</h2>
-
-            {% for entry in entires %}
+            {% for entry in all_entries %}
                 <article class="journal_entry">
-                    <h3 class="journal_title"><a href="{{ request.route_url('detail', id=entry.id) }}">{{ entry.title }}</a></h3>
+                    <h3 class="journal_title"><a href="{{ request.route_url('entry_details', id=entry.id) }}">{{ entry.title }}</a></h3>
                     <p class="journal_date">{{ entry.creation_date }}</p>
                 </article>
             {% endfor %}
