@@ -1,0 +1,132 @@
+
+.responsive_small {
+  display: block;
+}
+
+.responsive_med {
+  display: none;
+}
+
+.responsive_large {
+  display: none;
+}
+
+.hidden {
+  display: none;
+}
+
+#hamburger_menu {
+  font-size: 1.5em;
+  float: right;
+  padding: .2em;
+  cursor: pointer;
+}
+
+.nav_list li {
+  color: #bababa;
+  cursor: pointer;
+  border-radius: .5em;
+  background-color: #454545;
+  padding: .5em 1em;
+  margin: .4em;
+}
+@media screen and (min-width: 650px) {
+
+  #hamburger_menu {
+    display: none;
+  }
+
+  .nav_list {
+    display: block;
+  }
+
+  .nav_list li {
+    display: inline-block;
+    float: left;
+    margin: .5em .5em;
+  }
+
+  main {
+    padding: 1em;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+.header_inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+}
+@media screen and (min-width: 800px) {
+
+  .responsive_small {
+    display: none;
+  }
+
+  .responsive_med {
+    display: block;
+  }
+
+  .responsive_large {
+    display: none;
+  }
+
+  .nav_list li {
+    margin: .2em 1.5em;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
+  .responsive_small {
+    display: none;
+  }
+
+  .responsive_med {
+    display: none;
+  }
+
+  .responsive_large {
+    display: block;
+  }
+
+}
+
+#about_me, #portfolio {
+  display: none;
+}
+
+.article_header {
+  padding: .5em 1em;
+  border-radius: .5em;
+}
+
+.article_header a, a:link, a:visited {
+ text-decoration: none;
+ color: black;
+}
+
+.article_header_inner address {
+  display: inline;
+}
+
+.article_body {
+  color: #363636;
+}
+
+.read_on, .show_less {
+  color: #363636;
+  display: inline-block;
+  margin-bottom: .5em;
+}
+
+#portfolio_repos li {
+  color: #363636;
+}
+
+.repo_name {
+  margin-top: .5em;
+  margin-bottom: .5em;
+  border-radius: .5em;
+}

@@ -19,7 +19,6 @@ from ..models import (
     get_tm_session,
 )
 
-# from ..models import MyModel
 from ..models import Entry
 
 JOURNAL_ENTRIES = [
@@ -61,7 +60,7 @@ def main(argv=sys.argv):
     # Base.metadata.drop_all(engine)
     # Base.metadata(engine).commit()
     # the above line from http://pythoncentral.io/sqlalchemy-faqs/
-    # Base.metadata.create_all(engine)
+    Base.metadata.create_all(engine)
 
     session_factory = get_session_factory(engine)
 

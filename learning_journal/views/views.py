@@ -42,7 +42,7 @@ def form_view(request):
              renderer='../templates/edit_existing.jinja2')
 def edit_view(request):
     try:
-        query = request.dbsession.query(Entry.id == request.matchdict["id"])
+        entry = request.dbsession.query(Entry).get(request.matchdict["id"])
     except DBAPIError:
         return Response(DB_ERROR, content_type="text/plain", status=500)
-    return {"query": query}
+    return {"entry": entry}
