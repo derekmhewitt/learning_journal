@@ -6,8 +6,8 @@ from ..models import Entry
 DB_ERROR = "Whoops, there was a problem with the database!"
 
 
-@view_config(route_name='home', renderer='../templates/index.jinja2')
-def home_view(request):
+@view_config(route_name='index', renderer='../templates/index.jinja2')
+def index_view(request):
     try:
         all_entries = request.dbsession.query(Entry).order_by(Entry.id.desc())
     except DBAPIError:
@@ -35,7 +35,8 @@ def form_view(request):
     return {}
 
 
-@view_config(route_name='edit', renderer='../templates/edit.jinja2')
+@view_config(route_name='edit_existing',
+             renderer='../templates/edit_existing.jinja2')
 def edit_view(request):
     try:
         query = request.dbsession.query(Entry.id == request.matchdict["id"])
