@@ -1,6 +1,9 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import os
 import sys
 import transaction
+import datetime
 
 from pyramid.paster import (
     get_appsettings,
@@ -22,17 +25,17 @@ from ..models import Entry
 JOURNAL_ENTRIES = [
     {
         "title": "Day 12 Learning Journal",
-        "creation_date": "23 August 2016",
+        "creation_date": datetime.datetime(2016, 8, 23, 14, 30, 54, 123456),
         "body": "Sample body text for Day 12 Learning Journal.",
     },
     {
         "title": "Another Learning Journal",
-        "creation_date": "22 August 2016",
+        "creation_date": datetime.datetime(2016, 8, 22, 13, 10, 54, 123456),
         "body": "Sample body text for Another Learning Journal.",
     },
     {
         "title": "A Wild Third Entry Appears!",
-        "creation_date": "21 August 2016",
+        "creation_date": datetime.datetime(2016, 8, 21, 15, 20, 54, 123456),
         "body": "Sample body text for A Wild Third Entry Appears.",
     },
 ]
@@ -57,7 +60,7 @@ def main(argv=sys.argv):
 
     # Base.metadata.drop_all(engine)
     # Base.metadata(engine).commit()
-    # # the above line from http://pythoncentral.io/sqlalchemy-faqs/
+    # the above line from http://pythoncentral.io/sqlalchemy-faqs/
     # Base.metadata.create_all(engine)
 
     session_factory = get_session_factory(engine)

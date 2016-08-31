@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 import os
-
 from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -18,7 +19,7 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
-    ]
+]
 
 tests_require = [
     'WebTest >= 1.3.1',  # py3 compat
@@ -26,7 +27,7 @@ tests_require = [
     'pytest-cov',
     'pytest-watch',
     'tox'
-    ]
+]
 
 setup(name='learning_journal',
       version='0.1',

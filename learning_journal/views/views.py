@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
 from pyramid.view import view_config
 from pyramid.response import Response
 from sqlalchemy.exc import DBAPIError
@@ -25,7 +27,8 @@ def entry_details(request):
     return {"entry": entry}
 
 
-@view_config(route_name='form', renderer='../templates/form.jinja2')
+@view_config(route_name='entry_form',
+             renderer='../templates/entry_form.jinja2')
 def form_view(request):
     # try:
     #     query = request.dbsession.query(Entry.id == request.matchdict["id"])
