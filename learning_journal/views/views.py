@@ -3,8 +3,9 @@ from __future__ import unicode_literals
 from pyramid.view import view_config
 from pyramid.response import Response
 from sqlalchemy.exc import DBAPIError
-from pyramid.HTTPExceptions import HTTPFound
+from pyramid.httpexceptions import HTTPFound
 from ..models import Entry
+import datetime
 
 DB_ERROR = "Whoops, there was a problem with the database!"
 
@@ -25,10 +26,14 @@ def entry_details(request):
 @view_config(route_name='entry_form',
              renderer='../templates/entry_form.jinja2')
 def entry_form(request):
-    # if method = POST:
-    #     put some shit in the db
-    #     return HTTPFound(location=request.route_url("home"))
-    # else:
+    if request.method == "POST":
+        title = request.POST["title"]
+        body = request.POST["body"]
+        model = Entry(title=title, body=body,
+                      creation_date=datetime.datetime.now())
+        request.dbsession.add(model)
+        return HTTPFound(location=request.route_url("index"))
+    else:
         return {}
 
 
