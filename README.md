@@ -32,6 +32,8 @@ On day three we reinstalled Pyramid using the SQLAlchemy package and refactored 
 
 ### Cited Sources:
  - Help with date formatting: http://stackoverflow.com/questions/311627/how-to-print-date-in-a-regular-format-in-python
+ - Jinja 2 date formatting: http://stackoverflow.com/questions/4830535/python-how-do-i-format-a-date-in-jinja2
+ - Reset style sheet from: http://meyerweb.com/eric/tools/css/reset/
 
 # Day 4
 

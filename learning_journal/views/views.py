@@ -12,7 +12,7 @@ DB_ERROR = "Whoops, there was a problem with the database!"
 
 @view_config(route_name='index', renderer='../templates/index.jinja2')
 def index_view(request):
-    all_entries = request.dbsession.query(Entry).order_by(Entry.id.desc())
+    all_entries = request.dbsession.query(Entry).order_by(Entry.creation_date.desc())
     return {'all_entries': all_entries}
 
 
