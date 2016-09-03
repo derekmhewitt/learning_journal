@@ -20,4 +20,4 @@ class Entry(Base):
     body = Column(UnicodeText)
 
 
-Index('entries', Entry.title, unique=True, mysql_length=255)
+Index('entries_index', Entry.title, unique=True, mysql_length=255)

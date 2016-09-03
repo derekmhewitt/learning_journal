@@ -41,4 +41,10 @@ def entry_form(request):
              renderer='../templates/edit_existing.jinja2')
 def edit_existing(request):
     entry = request.dbsession.query(Entry).get(request.matchdict["id"])
+    if request.method == "POST":
+        entry.title = request.POST["title"]
+        entry.body = request.POST["body"]
+        entry.model = Entry(title=entry.title, body=entry.body,
+                            creation_date=entry.creation_date)
+        return HTTPFound(location=request.route_url("index"))
     return {"entry": entry}
