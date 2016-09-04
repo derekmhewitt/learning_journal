@@ -1,13 +1,9 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from pyramid.view import view_config
-from pyramid.response import Response
-from sqlalchemy.exc import DBAPIError
 from pyramid.httpexceptions import HTTPFound
 from ..models import Entry
 import datetime
-
-DB_ERROR = "Whoops, there was a problem with the database!"
 
 
 @view_config(route_name='index', renderer='../templates/index.jinja2')

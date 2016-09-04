@@ -11,11 +11,13 @@ import datetime
 from pyramid import testing
 
 from ..models import (
-    Entry,
     get_engine,
     get_session_factory,
     get_tm_session,
 )
+
+from ..models.entry import Entry
+
 from ..models.meta import Base
 
 
@@ -39,7 +41,7 @@ def sqlengine(request):
 
 
 @pytest.fixture(scope="function")
-def new_session(sqlengine, request):
+def test_session(sqlengine, request):
     session_factory = get_session_factory(sqlengine)
     session = get_tm_session(session_factory, transaction.manager)
 
@@ -50,6 +52,41 @@ def new_session(sqlengine, request):
     return session
 
 
-def test_entry_model_insert(new_session):
-    assert len(new_session.query(Entry).all()) == 0
-    model = Entry(title="", creation_date=datetime.datetime.now(), body="")
+def dummy_http_request(test_session):
+    return testing.DummyRequest(params={dbsession})
+
+
+def create_test_model(test_session):
+    test_session.add(Entry(title="test title",
+                           creation_date=datetime.datetime.now(),
+                           body="some test body text"))
+    test_session.flush()
+
+
+def test_entry_model_insert(test_session):
+    assert len(test_session.query(Entry).all()) == 0
+    # model = TEST_ENTRY
+    create_test_model(test_session)
+    assert len(test_session.query(Entry).all()) == 1
+
+
+def test_entry_model_date(test_session):
+    # model = TEST_ENTRY
+    create_test_model(test_session)
+    assert type(test_session.query(Entry).one().creation_date) == datetime.datetime
+
+
+def test_index_view(test_session):
+    from ..views.views import index_view
+    create_test_model(test_session)
+    http_request = dummy_http_request(test_session)
+    result = index_view(http_request)
+    assert result["test title"].title == "test title"
+
+
+def test_entry_details(test_session):
+    from ..views.views import entry_details
+    create_test_model(test_session)
+    http_request = dummy_http_request(test_session)
+    result = entry_details(http_request)
+    assert result["test title"].title == "test title"
