@@ -1,0 +1,59 @@
+body {
+  background-color: #c2c2c2;
+  min-width: 300px;
+  font-family: 'Raleway', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+  padding: 1em;
+  font-size: 2.856em;
+}
+
+h2 {
+  padding: .667em;
+  font-size: 2.197em;
+}
+
+h3 {
+  padding: .443em;
+  font-size: 1.69em;
+}
+
+h4 {
+  padding: .297em;
+  font-size: 1.3em;
+}
+
+h5 {
+  padding: .197em;
+  font-size: 1em;
+}
+
+h6 {
+  padding: .133em;
+  font-size: 0.769em;
+}
+
+.clearfix {
+  clear: both;
+}
+
+header {
+  background-color: #363636;
+  color: #c2c2c2;
+}
+
+a, a:link, a:visited {
+ text-decoration: none;
+}
+
+footer {
+  background-color: #363636;
+  padding: 1em;
+  text-align: center;
+  color: #bababa;
+}

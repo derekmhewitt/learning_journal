@@ -1,20 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="../static/style.css">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://use.fontawesome.com/747b239cb1.js"></script>
+        <link rel="stylesheet" href="{{ request.static_path('learning_journal:static/reset.css') }}">
+        <link rel="stylesheet" href="{{ request.static_path('learning_journal:static/base.css') }}">
+        <link rel="stylesheet" href="{{ request.static_path('learning_journal:static/layout.css') }}">
+        <link rel="stylesheet" href="{{ request.static_path('learning_journal:static/modules.css') }}">
         <title>Derek's Learning Journal</title>
     </head>
     <body>
         <header>
             <div class="header_inner">
-                <h1>Welcome to Derek's Learning Journal</h1>
+                <h1>Derek Hewitt's Learning Journal</h1>
+                <div id="hamburger_menu" class="hamburger_menu fa fa-bars" aria-hidden="true"></div>
                 <nav>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/detail">List Journal Entries</a></li>
-                        <li><a href="/form">New Entry</a></li>
-                        <li><a href="/edit">Edit Entry</a></li>
+                    <ul class="nav_list">
+                        <a href="/" class="nav_tab" data-category="articles"><li class="clearfix">Home</li></a>
+                        <a href="/entry_form" class="nav_tab" data-category=""><li>Create New Entry</li></a>
+                        <a href="http://www.linkedin.com/in/derek-hewitt"><li>LinkedIn</li></a>
+                        <a href="http://github.com/derekmhewitt"><li>Github</li></a>
                     </ul>
+                    <div class="clearfix" id="header_bumper"></div>
                 </nav>
             </div>
         </header>

@@ -1,0 +1,12 @@
+{% extends "layout.jinja2" %}
+{% block body %}
+            <h2>Entry Details View</h2>
+            <article class="journal_entry">
+                <h3 class="journal_title">{{ entry.title }}</h3>
+                <p class="journal_date">{{ entry.creation_date }}</p>
+                <div>
+                    {{ entry.body | safe }}
+                </div>
+                <h4><a href="{{ request.route_url('edit_existing', id=entry.id) }}">Edit this entry.</a></h4>
+            </article>
+{% endblock %}
