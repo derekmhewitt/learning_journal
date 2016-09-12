@@ -20,6 +20,24 @@ from ..models.entry import Entry
 
 from ..models.meta import Base
 
+TEST_JOURNAL_ENTRIES = [
+    {
+        "title": "Day 12 Learning Journal",
+        "creation_date": datetime.datetime(2016, 8, 23, 14, 30, 54, 123456),
+        "body": "Sample body text for Day 12 Learning Journal.",
+    },
+    {
+        "title": "Another Learning Journal",
+        "creation_date": datetime.datetime(2016, 8, 22, 13, 10, 54, 123456),
+        "body": "Sample body text for Another Learning Journal.",
+    },
+    {
+        "title": "A Wild Third Entry Appears!",
+        "creation_date": datetime.datetime(2016, 8, 21, 15, 20, 54, 123456),
+        "body": "Sample body text for A Wild Third Entry Appears.",
+    },
+]
+
 
 @pytest.fixture(scope="session")
 def sqlengine(request):
@@ -44,6 +62,9 @@ def sqlengine(request):
 def test_session(sqlengine, request):
     session_factory = get_session_factory(sqlengine)
     session = get_tm_session(session_factory, transaction.manager)
+    with transaction.manager:
+            dbsession = get_tm_session(session_factory, transaction.manager)
+    session.dbsession = dbsession
 
     def teardown():
         transaction.abort()
@@ -53,27 +74,29 @@ def test_session(sqlengine, request):
 
 
 def dummy_http_request(test_session):
-    return testing.DummyRequest(params={dbsession})
+    dummy_session = testing.DummyRequest()
+    dummy_session.dbsession = test_session.dbsession
+    return dummy_session
 
 
 def create_test_model(test_session):
-    test_session.add(Entry(title="test title",
-                           creation_date=datetime.datetime.now(),
-                           body="some test body text"))
+    for entry in TEST_JOURNAL_ENTRIES:
+            temp = Entry(title=entry["title"],
+                         creation_date=entry["creation_date"],
+                         body=entry["body"])
+            test_session.add(temp)
     test_session.flush()
 
 
 def test_entry_model_insert(test_session):
-    assert len(test_session.query(Entry).all()) == 0
-    # model = TEST_ENTRY
     create_test_model(test_session)
-    assert len(test_session.query(Entry).all()) == 1
+    assert len(test_session.query(Entry).all()) == 3
 
 
 def test_entry_model_date(test_session):
-    # model = TEST_ENTRY
     create_test_model(test_session)
-    assert type(test_session.query(Entry).one().creation_date) == datetime.datetime
+    compare = type(test_session.query(Entry).all()[0].creation_date)
+    assert compare == datetime.datetime
 
 
 def test_index_view(test_session):
@@ -81,12 +104,13 @@ def test_index_view(test_session):
     create_test_model(test_session)
     http_request = dummy_http_request(test_session)
     result = index_view(http_request)
-    assert result["test title"].title == "test title"
+    assert "all entries" in result
 
 
 def test_entry_details(test_session):
     from ..views.views import entry_details
     create_test_model(test_session)
     http_request = dummy_http_request(test_session)
+    http_request.matchdict["id"] = 1
     result = entry_details(http_request)
-    assert result["test title"].title == "test title"
+    assert "title" in result
