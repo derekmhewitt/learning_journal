@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from pyramid.config import Configurator
+import os
 
 
 def main(global_config, **settings):
@@ -8,8 +9,10 @@ def main(global_config, **settings):
 
     Huzzah!  Derek likes Tacos."""
     config = Configurator(settings=settings)
+    settings['sqlalchemy.url'] = os.environ.get('DATABASE_URL', '')
     config.include('pyramid_jinja2')
     config.include('.models')
     config.include('.routes')
+    config.include('.security')
     config.scan()
     return config.make_wsgi_app()
