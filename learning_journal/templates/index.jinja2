@@ -1,6 +1,9 @@
 {% extends "layout.jinja2" %}
 {% block body %}
             <h2>Learning Journal Entries</h2>
+            {% if request.authenticated_userid %}
+            <p id="welcome">Welcome {{ request.authenticated_userid }}</p>
+            {% endif %}
             {% for entry in all_entries %}
                 <article class="journal_entry">
                     <h3 class="journal_title"><a href="{{ request.route_url('entry_details', id=entry.id) }}">{{ entry.title }}</a></h3>

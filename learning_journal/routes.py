@@ -10,3 +10,5 @@ def includeme(config):
     config.add_route("edit_existing", "/edit_existing/{id:\d+}")
     config.add_route("entry_form", "/entry_form")
     config.add_route("entry_details", "/entry_details/{id:\d+}")
+    config.add_route("login", "/login")
+    config.add_route("logout", "/logout")
