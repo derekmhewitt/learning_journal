@@ -7,6 +7,8 @@
                 <div>
                     {{ entry.body | safe }}
                 </div>
+                {% if request.authenticated_userid %}
                 <h4><a href="{{ request.route_url('edit_existing', id=entry.id) }}">Edit this entry.</a></h4>
+                {% endif %}
             </article>
 {% endblock %}

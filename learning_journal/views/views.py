@@ -4,7 +4,7 @@ from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.security import NO_PERMISSION_REQUIRED
 from pyramid.security import remember, forget
-from test_transactions.security import check_credentials
+from ..security import check_credentials
 
 from ..models import Entry
 import datetime

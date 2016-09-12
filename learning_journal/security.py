@@ -36,11 +36,12 @@ class RootACL(object):
 def check_credentials(username, password):
     stored_username = os.environ.get('AUTH_USERNAME', '')
     stored_password = os.environ.get('AUTH_PASSWORD', '')
+    encrypted_password = pwd_context.encrypt(stored_password)
     is_authenticated = False
-    if stored_username and stored_password:
+    if stored_username and encrypted_password:
         if username == stored_username:
             try:
-                is_authenticated = pwd_context.verify(password, stored_password)
+                is_authenticated = pwd_context.verify(password, encrypted_password)
             except ValueError:
                 pass
     return is_authenticated

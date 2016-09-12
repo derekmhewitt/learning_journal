@@ -18,10 +18,14 @@
                 <nav>
                     <ul class="nav_list">
                         <a href="/" class="nav_tab" data-category="articles"><li class="clearfix">Home</li></a>
-                        <a href="/entry_form" class="nav_tab" data-category=""><li>Create New Entry</li></a>
                         <a href="http://www.linkedin.com/in/derek-hewitt"><li>LinkedIn</li></a>
                         <a href="http://github.com/derekmhewitt"><li>Github</li></a>
-                        <a href="/login"><li>Login</li></a>
+                        {% if request.authenticated_userid %}
+                        <a href="/logout"><li>Logout</li></a>
+                        <a href="/entry_form" class="nav_tab" data-category=""><li>Create New Entry</li></a>
+                        {% else %}
+                        <a href="/login"><li id="login_nav">Login</li></a>
+                        {% endif %}
                     </ul>
                     <div class="clearfix" id="header_bumper"></div>
                 </nav>
